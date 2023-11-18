@@ -38,4 +38,21 @@ gdal_calc.py -A wmsperuBB2.tiff --A_band=1 -B wmsperuBB2.tiff --B_band=3  -C wms
 gdal_polygonize.py "C:\users\rscott\OneDrive - OZ Minerals\Explorer Challenge\wmsperuBB.tiff" -f "ESRI Shapefile" wmsperuBB.shp
 
 gdal_polygonize.py -mask tmp.tif wmsperuBB2.tiff -b 1 -q -f "ESRI Shapefile" junk1.shp test
-``
+```
+
+
+## Geo Transform
+```python
+import gdal
+import pandas as pd
+
+def ix2xy(r,c,gt):
+    '''Gets x,y from row and column'''
+    x = gt[0] + r * gt[1]
+    y = gt[3] + c * gt[5]
+    return(x,y)
+This little function gets the X/Y coordinates from the GeoTransform attribute which is a tuple with (xorigin, xres, 0, yorigin, 0, yres).
+ds = gdal.Open('file.dat')
+gt = ds.GetGeoTransform()
+```
+
