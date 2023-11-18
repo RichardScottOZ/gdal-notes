@@ -68,4 +68,9 @@ python gdal_merge.py -o C:\users\rscott\downloads\AusAEMxbf01merge.tif C:\Users\
 ## warp
 ```
 gdalwarp -t_srs EPSG:4326 input.tif output.tif
+
+for %%N in (C:\Users\rscott\Downloads\*merge.ers) DO gdalwarp -t_srs EPSG:4326 %%N C:\Users\rscott\Downloads\temp\%%~nN.ers
+
+for %N in (C:\Users\rscott\Downloads\*merge.ers) DO gdalwarp -t_srs EPSG:4326 %N C:\Users\rscott\Downloads\temp\%~nN.ers
+
 ```
