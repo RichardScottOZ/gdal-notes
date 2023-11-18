@@ -17,6 +17,17 @@ gdal_calc.py -A wmsperuBB2.tiff --A_band=1 -B wmsperuBB2.tiff --B_band=3 --outfi
 
 gdal_calc.py -A wmsperuBB2.tiff --A_band=1 -B wmsperuBB2.tiff --B_band=3 --outfile=tmp.tif --calc="(A>127)*(B>127)"
 
+gdal_calc.py -A ./hillshade.tmp.tif  --outfile=./opacity.tif --calc="255-A"
+gdal_calc.py -A ./hillshade.tmp.tif  --outfile=./color_crop.tmp.tif   --calc="255*(A>220) +      A*(A<=220)"
+# filter the opacity band, keep opacity of relevant shadows below limit
+gdal_calc.py -A ./hillshade.tmp.tif  --outfile=./opacity_crop.tmp.tif  --calc="  1*(A>220) +(256-A)*(A<=220)"
+	
+	
+gdal_calc.py -A wmsperuBB2.tiff --A_band=1 -B wmsperuBB2.tiff --B_band=3  -C wmsperuBB2.tiff --C_band=2 --outfile=tmp.tif --calc="(A>127)*(B>127)*(C<255)"
+
+gdal_calc.py -A wmsperuBB2.tiff --A_band=1 -B wmsperuBB2.tiff --B_band=3  -C wmsperuBB2.tiff --C_band=2 --outfile=tmp.tif --calc="(A>127)*(B>108)*(C<255)"
+
+
 ```
 
 ## polygonize
