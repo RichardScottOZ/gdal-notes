@@ -54,5 +54,13 @@ def ix2xy(r,c,gt):
 This little function gets the X/Y coordinates from the GeoTransform attribute which is a tuple with (xorigin, xres, 0, yorigin, 0, yres).
 ds = gdal.Open('file.dat')
 gt = ds.GetGeoTransform()
+
 ```
 
+## merge
+```
+gdal_merge -o c:\temp\output_image.tif -q -v --optfile c:\temp\rasterlist.txt
+gdal_merge -o c:\temp\output_image.tif -q -v --optfile c:\users\rscott\AlOHGroupComposition.txt
+
+python gdal_merge.py -o C:\users\rscott\downloads\AusAEMxbf01merge.tif C:\Users\rscott\Downloads\AusAEM_Year1_Final_NT_Regional_Data\Final_NT_Regional_Lines\grid\emxbf\AusAEM_Year1_NT_Final_EMXbf01.ers C:\Users\rscott\Downloads\AusAEM_Year1_Final_QLD_Regional_Data\Final_QLD_Regional_Lines\grid\emxbf\AusAEM_Year1_QLD_Final_EMXbf01.ers
+```
