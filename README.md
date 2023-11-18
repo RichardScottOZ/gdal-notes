@@ -8,6 +8,17 @@ gdal_translate -a_srs EPSG:4326 -a_ullr -76.44533  -13.496806 -69.730871 -18.326
 gdal_translate -of JPEG -scale -co worldfile=yes input.tiff output.jpg	
 
 gdal_translate "bgeofisica_sinal.tif Car2019_ASRichard.tif" "Car2019_ASRichardUInt16.tif" -ot UInt16
+
+Brazil_DTM2 = r'E:\Exploracorn\brazil\s3\exploracorn\rasters\BRA_DTM2.tif'
+
+#ulx uly lrx lry
+
+from osgeo import gdal
+
+ds = gdal.Open(Brazil_DTM)
+ds = gdal.Translate(Brazil_DTM2, ds, projWin = [minx, maxy, maxx, miny])
+ds = None
+
 ```
 
 ## calc
