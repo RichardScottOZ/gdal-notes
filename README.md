@@ -88,3 +88,26 @@ for %%N in (C:\Users\rscott\Downloads\*merge.ers) DO gdalwarp -t_srs EPSG:4326 %
 for %N in (C:\Users\rscott\Downloads\*merge.ers) DO gdalwarp -t_srs EPSG:4326 %N C:\Users\rscott\Downloads\temp\%~nN.ers
 
 ```
+
+## Errors
+C:\Users\rnmsc\OneDrive\GIT\ML-Framework\geoscience-ml>python tests\test_cnn_model.py
+Traceback (most recent call last):
+  File "C:\Users\rnmsc\OneDrive\GIT\ML-Framework\geoscience-ml\tests\test_cnn_model.py", line 9, in <module>
+    from src.utils.dummy_data import DummyDataGenerator
+  File "c:\users\rnmsc\onedrive\git\ml-framework\geoscience-ml\src\utils\__init__.py", line 1, in <module>
+    from .explainability import ModelExplainer
+  File "c:\users\rnmsc\onedrive\git\ml-framework\geoscience-ml\src\utils\explainability.py", line 13, in <module>
+    import rasterio
+  File "C:\Users\rnmsc\miniconda3\envs\pangeo\lib\site-packages\rasterio\__init__.py", line 28, in <module>
+    from rasterio._version import gdal_version, get_geos_version, get_proj_version
+ImportError: DLL load failed while importing _version: The specified procedure could not be found.
+
+Don't mix pip install rasterio with conda GDAL
+
+Never install GDAL from default channel - use conda-forge
+
+Avoid Python 3.11+ (stick with 3.9/3.10 for better compatibility)
+
+
+conda create -n geo_env -c conda-forge python=3.9 rasterio=1.3.9 gdal=3.7.2
+
